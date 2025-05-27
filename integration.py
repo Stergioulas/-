@@ -2,6 +2,7 @@ import scanpy as sc
 import scanpy.external as sce
 import numpy as np
 import pandas as pd
+import streamlit as st # Προσθήκη Streamlit για το spinner
 
 def run_scanorama_integration(
     adata_concatenated,
@@ -48,63 +49,64 @@ def run_scanorama_integration(
     # Το scanorama.integrate_scanpy τροποποιεί τα anndata objects στη λίστα inplace,
     # προσθέτοντας το .obsm['X_scanorama']
     print(f"Εκτέλεση scanorama.integrate_scanpy με dimred={dimred}...")
-    sce.pp.scanorama_integrate(adata_list, batch_key=batch_key, dimred=dimred, approx=True)
-    # Το integrate_scanpy δεν υπάρχει πλέον, χρησιμοποιούμε το scanorama_integrate
-    # sce.pp.scanorama_integrate(adata_list, dimred=dimred) 
-    # Ήταν: scanorama.integrate_scanpy(adata_list, dimred=dimred)
+    with st.spinner(f"Running Scanorama integration (dimred={dimred})..."):
+        sce.pp.scanorama_integrate(adata_list, batch_key=batch_key, dimred=dimred, approx=True)
+        # Το integrate_scanpy δεν υπάρχει πλέον, χρησιμοποιούμε το scanorama_integrate
+        # sce.pp.scanorama_integrate(adata_list, dimred=dimred) 
+        # Ήταν: scanorama.integrate_scanpy(adata_list, dimred=dimred)
 
-    print("Η ενοποίηση Scanorama ολοκληρώθηκε για τα επιμέρους anndata objects.")
+        print("Η ενοποίηση Scanorama ολοκληρώθηκε για τα επιμέρους anndata objects.")
 
-    # Συνένωση των anndata objects πίσω σε ένα, κρατώντας το X_scanorama
-    # Πρώτα, βεβαιωνόμαστε ότι όλα έχουν το X_scanorama
-    for i, ad in enumerate(adata_list):
-        if 'X_scanorama' not in ad.obsm:
-            raise ValueError(f"Το AnnData object για το batch {batches[i]} δεν περιέχει 'X_scanorama' μετά την ενοποίηση.")
+        # Συνένωση των anndata objects πίσω σε ένα, κρατώντας το X_scanorama
+        # Πρώτα, βεβαιωνόμαστε ότι όλα έχουν το X_scanorama
+        for i, ad in enumerate(adata_list):
+            if 'X_scanorama' not in ad.obsm:
+                raise ValueError(f"Το AnnData object για το batch {batches[i]} δεν περιέχει 'X_scanorama' μετά την ενοποίηση.")
 
-    # Δημιουργούμε ένα νέο anndata για να κρατήσουμε την ενσωμάτωση
-    # Θα πάρουμε το .obs από το αρχικό concatenated και θα προσθέσουμε το X_scanorama
-    # Αυτό είναι λίγο πιο περίπλοκο γιατί το scanorama.integrate_scanpy δεν επιστρέφει ένα ενιαίο anndata
-    
-    # Παίρνουμε το X_scanorama από κάθε anndata και το συνδυάζουμε
-    all_scanorama_embeddings = [ad.obsm['X_scanorama'] for ad in adata_list]
-    
-    # Για να τα συνδυάσουμε, πρέπει να ξέρουμε τη σειρά των κυττάρων στο αρχικό adata_concatenated
-    # και να τα αντιστοιχίσουμε. Ο πιο απλός τρόπος είναι να ξαναφτιάξουμε το concatenated
-    # και να του προσθέσουμε το X_scanorama.
-    
-    # Προσοχή: Η σειρά των κυττάρων στα adata_list πρέπει να διατηρηθεί όπως ήταν στο αρχικό adata_concatenated
-    # όταν έγινε ο διαχωρισμός ανά batch. Ο παραπάνω τρόπος διαχωρισμού διατηρεί τη σχετική σειρά εντός των batches,
-    # αλλά η σειρά των batches στην adata_list μπορεί να μην είναι η ίδια με τη σειρά εμφάνισης στο αρχικό.
-    # Για απλότητα, θα τα συνενώσουμε ξανά και θα προσθέσουμε το ενιαίο embedding.
-
-    # Δημιουργούμε ένα νέο AnnData object από την αρχή για το αποτέλεσμα
-    # Χρησιμοποιούμε τα αρχικά δεδομένα έκφρασης από το adata_concatenated.X
-    # και τις παρατηρήσεις από το adata_concatenated.obs
-    # και τις μεταβλητές από το adata_concatenated.var
-    # Το σημαντικό είναι να φτιάξουμε το ενιαίο .obsm['X_scanorama']
-
-    # Σωστός τρόπος: Επανασυναρμολόγηση του X_scanorama με βάση τα αρχικά cell indices
-    # Δημιουργούμε ένα κενό array για το τελικό X_scanorama
-    final_x_scanorama = np.zeros((adata_concatenated.n_obs, dimred))
-    current_idx = 0
-    for i, batch_val in enumerate(batches):
-        adata_batch_original_slice = adata_concatenated[adata_concatenated.obs[batch_key] == batch_val, :]
-        num_cells_in_batch = adata_batch_original_slice.n_obs
+        # Δημιουργούμε ένα νέο anndata για να κρατήσουμε την ενσωμάτωση
+        # Θα πάρουμε το .obs από το αρχικό concatenated και θα προσθέσουμε το X_scanorama
+        # Αυτό είναι λίγο πιο περίπλοκο γιατί το scanorama.integrate_scanpy δεν επιστρέφει ένα ενιαίο anndata
         
-        # Βρίσκουμε το αντίστοιχο anndata από την adata_list που έχει το X_scanorama
-        # Αυτό υποθέτει ότι η σειρά των batches στην adata_list είναι ίδια με τη σειρά των categories
-        adata_integrated_batch = adata_list[i] 
+        # Παίρνουμε το X_scanorama από κάθε anndata και το συνδυάζουμε
+        all_scanorama_embeddings = [ad.obsm['X_scanorama'] for ad in adata_list]
         
-        if adata_integrated_batch.n_obs != num_cells_in_batch:
-            print(f"Προσοχή: Ασυμφωνία στον αριθμό κυττάρων για το batch {batch_val}. Αυτό δεν θα έπρεπε να συμβαίνει.")
-            # Αυτό μπορεί να συμβεί αν η σειρά των batches στην adata_list δεν είναι σωστή.
-            # Προς το παρόν, συνεχίζουμε με την υπόθεση ότι είναι σωστή.
+        # Για να τα συνδυάσουμε, πρέπει να ξέρουμε τη σειρά των κυττάρων στο αρχικό adata_concatenated
+        # και να τα αντιστοιχίσουμε. Ο πιο απλός τρόπος είναι να ξαναφτιάξουμε το concatenated
+        # και να του προσθέσουμε το X_scanorama.
+        
+        # Προσοχή: Η σειρά των κυττάρων στα adata_list πρέπει να διατηρηθεί όπως ήταν στο αρχικό adata_concatenated
+        # όταν έγινε ο διαχωρισμός ανά batch. Ο παραπάνω τρόπος διαχωρισμού διατηρεί τη σχετική σειρά εντός των batches,
+        # αλλά η σειρά των batches στην adata_list μπορεί να μην είναι η ίδια με τη σειρά εμφάνισης στο αρχικό.
+        # Για απλότητα, θα τα συνενώσουμε ξανά και θα προσθέσουμε το ενιαίο embedding.
 
-        final_x_scanorama[adata_concatenated.obs[batch_key] == batch_val] = adata_integrated_batch.obsm['X_scanorama']
-        # current_idx += num_cells_in_batch # Αυτό δεν χρειάζεται αν αντιστοιχούμε με boolean indexing
+        # Δημιουργούμε ένα νέο AnnData object από την αρχή για το αποτέλεσμα
+        # Χρησιμοποιούμε τα αρχικά δεδομένα έκφρασης από το adata_concatenated.X
+        # και τις παρατηρήσεις από το adata_concatenated.obs
+        # και τις μεταβλητές από το adata_concatenated.var
+        # Το σημαντικό είναι να φτιάξουμε το ενιαίο .obsm['X_scanorama']
 
-    adata_integrated_final = adata_concatenated.copy() # Ξεκινάμε με ένα αντίγραφο του αρχικού συνενωμένου
-    adata_integrated_final.obsm['X_scanorama'] = final_x_scanorama
+        # Σωστός τρόπος: Επανασυναρμολόγηση του X_scanorama με βάση τα αρχικά cell indices
+        # Δημιουργούμε ένα κενό array για το τελικό X_scanorama
+        final_x_scanorama = np.zeros((adata_concatenated.n_obs, dimred))
+        current_idx = 0
+        for i, batch_val in enumerate(batches):
+            adata_batch_original_slice = adata_concatenated[adata_concatenated.obs[batch_key] == batch_val, :]
+            num_cells_in_batch = adata_batch_original_slice.n_obs
+            
+            # Βρίσκουμε το αντίστοιχο anndata από την adata_list που έχει το X_scanorama
+            # Αυτό υποθέτει ότι η σειρά των batches στην adata_list είναι ίδια με τη σειρά των categories
+            adata_integrated_batch = adata_list[i] 
+            
+            if adata_integrated_batch.n_obs != num_cells_in_batch:
+                print(f"Προσοχή: Ασυμφωνία στον αριθμό κυττάρων για το batch {batch_val}. Αυτό δεν θα έπρεπε να συμβαίνει.")
+                # Αυτό μπορεί να συμβεί αν η σειρά των batches στην adata_list δεν είναι σωστή.
+                # Προς το παρόν, συνεχίζουμε με την υπόθεση ότι είναι σωστή.
+
+            final_x_scanorama[adata_concatenated.obs[batch_key] == batch_val] = adata_integrated_batch.obsm['X_scanorama']
+            # current_idx += num_cells_in_batch # Αυτό δεν χρειάζεται αν αντιστοιχούμε με boolean indexing
+
+        adata_integrated_final = adata_concatenated.copy() # Ξεκινάμε με ένα αντίγραφο του αρχικού συνενωμένου
+        adata_integrated_final.obsm['X_scanorama'] = final_x_scanorama
     
     print(f"Το τελικό ενοποιημένο AnnData object δημιουργήθηκε με X_scanorama σχήματος: {adata_integrated_final.obsm['X_scanorama'].shape}")
     

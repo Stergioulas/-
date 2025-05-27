@@ -1,0 +1,347 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- Γενικά Πακέτα ---
+\usepackage[utf8]{inputenc} % Input encoding
+\usepackage{fontspec}     % For font selection (recommended for XeLaTeX/LuaLaTeX)
+\usepackage[greek,english]{babel} % Language support, AFTER fontspec can sometimes be better
+\usepackage{graphicx} 
+\usepackage{amsmath, amssymb, amsfonts} 
+\usepackage[a4paper, margin=1in]{geometry} 
+\usepackage{hyperref} 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={scRNA-seq Analysis Application Report}, % Title in English for metadata
+    pdfpagemode=FullScreen,
+    pdfencoding=auto 
+}
+\usepackage{caption} 
+\usepackage{listings} 
+\usepackage{enumitem} 
+\usepackage{booktabs} 
+\usepackage{float} 
+
+% --- Font Settings (with fontspec) ---
+% Ensure the font is installed on your system if compiling locally with XeLaTeX/LuaLaTeX
+\setmainfont{Times New Roman} % Main font
+% \setsansfont{Arial} % Example if a separate sans-serif is needed
+% \setmonofont{Courier New} % Example for monospaced font
+
+% --- Language Settings ---
+% Main language will be Greek
+% \selectlanguage{greek} % This will be set after \begin{document}
+
+% --- Listings Settings (Code) ---
+\lstset{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily, 
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!70!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    tabsize=2,
+    breaklines=true,
+    breakatwhitespace=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single, 
+    captionpos=b 
+}
+
+% --- Title, Authors, Date ---
+\title{Ανάπτυξη Διαδραστικής Εφαρμογής για Ανάλυση Δεδομένων Μοριακής Βιολογίας (scRNA-seq)}
+\author{Στεργιούλας Γεώργιος (inf2021216) \and Αναγνωστόπουλος Φίλιππος (inf2021014)} % Using \and for author separation
+\date{Μάιος 2025}
+
+% --- Document Start ---
+\begin{document}
+\selectlanguage{greek} % Set main language to Greek
+\maketitle 
+
+% --- Abstract ---
+\begin{abstract}
+\noindent 
+Αυτή η εργασία παρουσιάζει το σχεδιασμό και την υλοποίηση μιας διαδραστικής εφαρμογής Streamlit για την ανάλυση δεδομένων single-cell RNA sequencing (scRNA-seq). 
+Η εφαρμογή ενσωματώνει ένα τυπικό pipeline ανάλυσης scRNA-seq, επιτρέποντας στους χρήστες να ανεβάζουν τα δεδομένα τους, να εκτελούν βήματα όπως ποιοτικός έλεγχος, ενοποίηση δεδομένων, μείωση διαστατικότητας, ομαδοποίηση κυττάρων, ανάλυση διαφορικά εκφρασμένων γονιδίων και χαρακτηρισμό κυτταρικών τύπων. 
+Η εφαρμογή παρέχει παραμετροποίηση των βασικών βημάτων και οπτικοποιήσεις των αποτελεσμάτων. Επιπλέον, η εφαρμογή έχει γίνει Dockerized για εύκολη ανάπτυξη και αναπαραγωγιμότητα.
+\\ \\ 
+\textbf{Λέξεις Κλειδιά:} scRNA-seq, Streamlit, Python, Ανάλυση Δεδομένων, Οπτικοποίηση, Docker.
+\end{abstract}
+
+\tableofcontents 
+\newpage
+
+% --- Εισαγωγή ---
+\section{Εισαγωγή}
+\label{sec:eisagogi}
+Η ανάλυση δεδομένων single-cell RNA sequencing (scRNA-seq) έχει φέρει επανάσταση στην κατανόηση της ετερογένειας των κυτταρικών πληθυσμών και των μοριακών μηχανισμών που διέπουν βιολογικές διεργασίες. 
+Ωστόσο, η πολυπλοκότητα των δεδομένων και των αναλυτικών pipelines απαιτεί εξειδικευμένες γνώσεις και υπολογιστικούς πόρους, καθιστώντας συχνά την πρόσβαση σε αυτές τις αναλύσεις δύσκολη για ερευνητές χωρίς ισχυρό βιοπληροφορικό υπόβαθρο.
+
+Σκοπός του παρόντος project είναι η ανάπτυξη μιας φιλικής προς το χρήστη, διαδραστικής web εφαρμογής που απλοποιεί την εκτέλεση βασικών βημάτων ανάλυσης scRNA-seq. 
+Η εφαρμογή, υλοποιημένη με τη χρήση Python και Streamlit, στοχεύει να παρέχει μια ολοκληρωμένη λύση από την εισαγωγή των δεδομένων έως την παραγωγή οπτικοποιήσεων και την εξαγωγή αποτελεσμάτων.
+
+Σε αυτή την αναφορά, περιγράφεται λεπτομερώς ο σχεδιασμός, η υλοποίηση και η λειτουργικότητα της εφαρμογής. 
+Αρχικά, παρουσιάζεται ο σχεδιασμός της υλοποίησης, ακολουθούμενος από τα UML διαγράμματα που αποτυπώνουν την αρχιτεκτονική. 
+Στη συνέχεια, αναλύονται οι τεχνικές λεπτομέρειες της υλοποίησης κάθε συνιστώσας της εφαρμογής. 
+Παρουσιάζονται παραδείγματα οπτικοποιήσεων που παράγει η εφαρμογή και, τέλος, περιγράφεται η διαδικασία Dockerization για τη διασφάλιση της αναπαραγωγιμότητας και της εύκολης διανομής.
+
+% --- Σχεδιασμός της Υλοποίησης ---
+\section{Σχεδιασμός της Υλοποίησης}
+\label{sec:sxediasmos}
+Ο σχεδιασμός της εφαρμογής βασίστηκε στην ανάγκη για μια αρθρωτή και επεκτάσιμη αρχιτεκτονική. 
+Επιλέχθηκε η Python ως κύρια γλώσσα προγραμματισμού λόγω της πληθώρας βιβλιοθηκών για βιοπληροφορική ανάλυση (π.χ., Scanpy, AnnData, Pandas) και το Streamlit για την ταχεία ανάπτυξη διαδραστικών web διεπαφών.
+
+Το pipeline ανάλυσης που ενσωματώνεται στην εφαρμογή περιλαμβάνει τα ακόλουθα κύρια στάδια:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Φόρτωση Δεδομένων:} Υποστήριξη για αρχεία μορφής AnnData (.h5ad).
+    \item \textbf{Ενοποίηση Δεδομένων (Προαιρετικά):} Χρήση του αλγορίθμου Scanorama για τη διόρθωση batch effects όταν παρέχονται πολλαπλά δείγματα.
+    \item \textbf{Ποιοτικός Έλεγχος (QC):} Φιλτράρισμα κυττάρων και γονιδίων βάσει παραμέτρων που ορίζει ο χρήστης (π.χ., min counts, min genes, mitochondrial percentage).
+    \item \textbf{Ομαλοποίηση και Εντοπισμός Ιδιαίτερα Μεταβλητών Γονιδίων (HVGs):} Προετοιμασία των δεδομένων για downstream ανάλυση.
+    \item \textbf{Μείωση Διαστατικότητας:} Ανάλυση Κύριων Συνιστωσών (PCA) και Uniform Manifold Approximation and Projection (UMAP).
+    \item \textbf{Ομαδοποίηση Κυττάρων (Clustering):} Εφαρμογή του αλγορίθμου Leiden για τον εντοπισμό κυτταρικών συστάδων.
+    \item \textbf{Ανάλυση Διαφορικά Εκφρασμένων Γονιδίων (DEG Analysis):} Εντοπισμός γονιδίων που εκφράζονται διαφορετικά μεταξύ των ορισμένων ομάδων.
+    \item \textbf{Χαρακτηρισμός Κυτταρικών Τύπων (Cell Type Annotation):} Χρήση της βιβλιοθήκης Decoupler (μεθόδοι ORA και WMS) βάσει αρχείου δεικτών που παρέχει ο χρήστης.
+    \item \textbf{Οπτικοποιήσεις:} Δημιουργία διαφόρων διαγραμμάτων (violin plots, UMAPs, volcano plots, heatmaps) για την εξερεύνηση των αποτελεσμάτων.
+\end{enumerate}
+
+Η εφαρμογή διαρθρώνεται γύρω από ένα κύριο αρχείο `app.py` που διαχειρίζεται τη διεπαφή χρήστη και τη ροή εργασιών, και μια σειρά από βοηθητικά scripts στον κατάλογο \texttt{pipeline\_scripts/} που περιέχουν τις συναρτήσεις για κάθε βήμα...
+
+Η κατάσταση της εφαρμογής (session state) διατηρείται για να επιτρέπει τη διαδραστική ανάλυση χωρίς απώλεια των ενδιάμεσων αποτελεσμάτων.
+
+% --- Μέχρι το σημείο των UML διαγραμμάτων δεν αλλάζεις τίποτα! ---
+
+% --- UML Διαγράμματα ---
+\section{UML Διαγράμματα}
+\label{sec:uml}
+Για την καλύτερη κατανόηση της αρχιτεκτονικής και της λειτουργικότητας της εφαρμογής, δημιουργήθηκαν τα παρακάτω UML διαγράμματα.
+
+\subsection{Use Case Diagram (Διάγραμμα Περιπτώσεων Χρήσης)}
+Το διάγραμμα περιπτώσεων χρήσης περιλαμβάνει τα εξής:
+\begin{itemize}
+    \item \textbf{Actor:} \textit{Ερευνητής / Χρήστης της Εφαρμογής}
+    \item \textbf{Κύριες Περιπτώσεις Χρήσης:}
+    \begin{itemize}
+        \item \textbf{Φόρτωση δεδομένων} AnnData (.h5ad)
+        \item \textbf{Εκτέλεση Ενοποίησης (Integration)} με Scanorama
+        \item \textbf{Ποιοτικός Έλεγχος (QC)} και ορισμός παραμέτρων
+        \item \textbf{Εκτέλεση Ομαλοποίησης, HVG selection, scaling}
+        \item \textbf{Μείωση Διαστατικότητας (PCA, UMAP)}
+        \item \textbf{Ομαδοποίηση (Clustering, Leiden)}
+        \item \textbf{Ανάλυση DEGs (Differential Expression)}
+        \item \textbf{Χαρακτηρισμός κυτταρικών τύπων (Cell Type Annotation, Decoupler)}
+        \item \textbf{Οπτικοποίηση αποτελεσμάτων (UMAP, Violin και Volcano plots, Heatmaps)}
+        \item \textbf{Λήψη/εξαγωγή των αποτελεσμάτων}
+    \end{itemize}
+\end{itemize}
+\textit{(Δες Σχήμα~\ref{fig:use_case_diagram})}
+
+\begin{figure}[H]
+    \centering
+    % Εδώ βάζεις export του PlantUML use case, ή αφήνεις το placeholder.
+   \includegraphics[width=0.8\textwidth]{uml.png}
+    \caption{Διάγραμμα Περιπτώσεων Χρήσης της εφαρμογής scRNA-seq.}
+    \label{fig:use_case_diagram}
+
+\end{figure}
+
+\subsection{Class Diagram (Διάγραμμα Κλάσεων)}
+Η εφαρμογή είναι αρθρωτή, με βασικές δομές και αρχεία:
+\begin{itemize}
+    \item \texttt{app.py} (\textbf{Κεντρική Εφαρμογή}): Ελέγχει το user interface, το session state, τη ροή pipeline και τις οπτικοποιήσεις.
+    \item \texttt{pipeline\_scripts/}
+    \begin{itemize}
+        \item \texttt{preprocessing.py}: Ποιοτικός έλεγχος και ομαλοποίηση δεδομένων
+        \item \texttt{integration.py}: Ενοποίηση με Scanorama
+        \item \texttt{dimensionality\_reduction.py}: PCA/UMAP/Leiden clustering
+        \item \texttt{deg\_analysis.py}: DEG analysis Και volcano plot functions
+        \item \texttt{annotation.py}: Cell type annotation με decoupler (ORA/WMS)
+    \end{itemize}
+    \item \texttt{AnnData Object}: Κεντρικό data structure, μεταφέρεται και ενημερώνεται σε όλα τα βήματα (μέσα στο session state).
+\end{itemize}
+
+Οι συσχετίσεις συνοψίζονται:
+\begin{itemize}
+    \item Το \texttt{app.py} καλεί συναρτήσεις από τα υπόλοιπα scripts, ενημερώνοντας το AnnData και session state.
+    \item Κάθε script λειτουργεί modular, επιστρέφοντας ενημερωμένο AnnData ή αποτελέσματα που χρησιμοποιούνται στο UI.
+\end{itemize}
+
+
+\newpage
+
+% --- Ανάλυση της Υλοποίησης με Τεχνικές Λεπτομέρειες ---
+\section{Ανάλυση της Υλοποίησης με Τεχνικές Λεπτομέρειες}
+\label{sec:analysis_implementation}
+
+\subsection{Κύρια Εφαρμογή (\texttt{app.py})}
+Η εφαρμογή υλοποιεί διαδραστικό interface με χρήση Streamlit.
+\begin{itemize}
+    \item \textbf{UI Δομή:}
+    \begin{itemize}
+        \item Χρησιμοποιούνται \texttt{st.tabs} για διαχωρισμό των ενοτήτων (Ανάλυση Δεδομένων, Πληροφορίες Ομάδας).
+        \item Όλα τα βήματα ρύθμισης γίνονται στο \texttt{st.sidebar}, όπου μέσω \texttt{st.expander} οργανώνονται οι παράμετροι κάθε pipeline βήματος (QC, Integration, Clustering κ.λπ.).
+        \item Widgets όπως \texttt{st.file\_uploader}, \texttt{st.button}, \texttt{st.slider}, \texttt{st.selectbox}, \texttt{st.checkbox}, \texttt{st.text\_input}, \texttt{st.number\_input} χρησιμοποιούνται για παραμετροποίηση από τον χρήστη.
+    \end{itemize}
+    \item \textbf{Διαχείριση Session State:}
+    \begin{itemize}
+        \item Το \texttt{st.session\_state} χρησιμοποιείται εκτεταμένα για να διατηρείται η κατάσταση του pipeline ανά reload. Ενδεικτικές μεταβλητές: \texttt{adata\_initial\_list}, \texttt{adata\_processed}, \texttt{adata\_clustered}, \texttt{deg\_results}, \texttt{adata\_annotated}, \texttt{current\_stage}.
+        \item Κάθε pipeline βήμα ανανεώνει τα κατάλληλα αντικείμενα (AnnData, αποτελέσματα DEG, annotations).
+        \item Η χρήση του \texttt{st.rerun()} (π.χ. μετά από επιτυχή φόρτωση ή αλλαγή παραμέτρων) διασφαλίζει τον συγχρονισμό UI και δεδομένων.
+    \end{itemize}
+    \item \textbf{Workflow Logic:}
+    \begin{itemize}
+        \item Υπάρχει αυστηρή λογική ακολουθίας (pipeline): δεν μπορεί να προχωρήσει ο χρήστης χωρίς να ολοκληρώσει προηγούμενα βήματα (π.χ. δεν επιτρέπεται clustering αν δεν έχει γίνει QC).
+        \item Κάθε ενέργεια (button press) οδηγεί σε εκτέλεση αντίστοιχης συνάρτησης στα pipeline scripts, με ελέγχους εγκυρότητας (π.χ. είναι τα δεδομένα φορτωμένα; QC completed; κλπ).
+    \end{itemize}
+    \item \textbf{Φόρτωση/Προεπισκόπηση Δεδομένων:}
+    \begin{itemize}
+        \item Φόρτωση πολλαπλών .h5ad γίνεται με \texttt{st.file\_uploader (accept\_multiple\_files=True)}, δημιουργώντας λίστα AnnData.
+        \item Αν χρειάζεται, τα AnnData objects ενώνονται (concatenate) βάσει batch, ώστε να μπορεί να γίνει integration και joint analysis.
+        \item Η εφαρμογή εμφανίζει πληροφορίες για το κάθε AnnData (shape, keys σε .obs/.var), δείγμα από τις μεταβλητές.
+    \end{itemize}
+    \item \textbf{Οπτικοποιήσεις:}
+    \begin{itemize}
+        \item Όλα τα plots δημιουργούνται είτε με scanpy/scanorama (π.χ. UMAP, violin, volcano, heatmap) και αποδίδονται στην εφαρμογή με \texttt{st.pyplot(fig)}.
+        \item Ο χρήστης μπορεί να διαλέξει τι θα οπτικοποιήσει (UMAP by cluster, by batch, by gene expression κλπ).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Scripts του Pipeline (\texttt{pipeline\_scripts/})}
+Ακολουθεί ανάλυση κάθε αρχείου:
+
+\begin{itemize}
+    \item \textbf{preprocessing.py:} Περιλαμβάνει τη \texttt{preprocess\_adata}. Κάνει:
+        \begin{itemize}
+            \item Υπολογισμό QC metrics με \texttt{sc.pp.calculate\_qc\_metrics} (π.χ. n\_genes\_by\_counts, total\_counts, pct\_counts\_mt)
+            \item Φιλτράρισμα κυττάρων/γονιδίων με βάση τα thresholds του χρήστη
+            \item Ομαλοποίηση counts (\texttt{sc.pp.normalize\_total}), log1p transform (\texttt{sc.pp.log1p}), επιλογή HVGs (\texttt{sc.pp.highly\_variable\_genes}), scaling (\texttt{sc.pp.scale})
+            \item Διατηρείται το αρχικό raw matrix στο \texttt{adata.raw} πριν την επιλογή HVG
+        \end{itemize}
+    \item \textbf{integration.py:} Η \texttt{run\_scanorama\_integration} παίρνει λίστα AnnData και ενώνει τα δείγματα με Scanorama.
+        \begin{itemize}
+            \item Κάνει join/merge AnnData βάσει \texttt{batch\_key}, αφαιρεί batch effect.
+            \item Αποθηκεύει το embedding στο \texttt{adata.obsm['X\_scanorama']}
+        \end{itemize}
+    \item \textbf{dimensionality\_reduction.py:} Η \texttt{run\_pca\_umap\_leiden} τρέχει PCA, υπολογίζει neighbors, UMAP και Leiden clustering.
+        \begin{itemize}
+            \item \texttt{sc.tl.pca} υπολογίζει τις κύριες συνιστώσες.
+            \item \texttt{sc.pp.neighbors} φτιάχνει neighborhood graph (παράμετροι: n\_neighbors, n\_pcs)
+            \item \texttt{sc.tl.umap} για 2D embedding (min\_dist, spread)
+            \item \texttt{sc.tl.leiden} για clustering (resolution)
+            \item Αποθήκευση αποτελεσμάτων σε \texttt{adata.obsm['X\_pca']}, \texttt{adata.obsm['X\_umap']}, \texttt{adata.obs['leiden']}
+        \end{itemize}
+    \item \textbf{deg\_analysis.py:} Η \texttt{run\_deg\_analysis} καλεί \texttt{sc.tl.rank\_genes\_groups} με method ('wilcoxon', 't-test', 'logreg'). Παράγει dataframe με logFC, p-values, adj p-values για όλα τα γονίδια/συγκρίσεις.
+        \begin{itemize}
+            \item Επιλογή ομάδας αναφοράς και συγκρινόμενης ομάδας (groupby\_key, group1, reference)
+            \item \texttt{plot\_volcano} (στο app.py) φτιάχνει volcano plot για επιλεγμένη σύγκριση (logFC vs -log10(padj))
+        \end{itemize}
+    \item \textbf{annotation.py:} Περιέχει τις \texttt{create\_marker\_dict\_from\_df}, \texttt{run\_decoupler\_ora}, \texttt{run\_decoupler\_wmean}.
+        \begin{itemize}
+            \item \texttt{create\_marker\_dict\_from\_df} μετατρέπει ένα CSV με markers σε λεξικό (cell type -> gene list)
+            \item \texttt{run\_decoupler\_ora}, \texttt{run\_decoupler\_wmean} τρέχουν enrichment analysis με decoupler (ORA, WMS) και αποθηκεύουν τα scores σε \texttt{adata.obsm['ora\_estimate']}, \texttt{adata.obs['wms\_scores']}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Διαχείριση Δεδομένων AnnData}
+Η ροή του AnnData object:
+\begin{itemize}
+    \item \textbf{Αρχική Φόρτωση:} \texttt{.X} = raw counts, \texttt{.obs} = μεταδεδομένα για cells, \texttt{.var} = πληροφορίες γονιδίων
+    \item \textbf{Μετά το QC/Normalization/HVG:}
+        \begin{itemize}
+            \item \texttt{.X} ενημερώνεται με normalized/log1p counts
+            \item \texttt{.obs} προστίθενται QC fields (\texttt{n\_genes\_by\_counts}, \texttt{total\_counts}, \texttt{pct\_counts\_mt})
+            \item \texttt{.var} προστίθενται (\texttt{highly\_variable}, \texttt{dispersions\_norm})
+            \item \texttt{.raw} κρατάει immutable version για downstream DEG
+        \end{itemize}
+    \item \textbf{PCA/UMAP/Leiden:}
+        \begin{itemize}
+            \item \texttt{.obsm['X\_pca']} = coordinates PCA, \texttt{.obsm['X\_umap']} = UMAP embedding
+            \item \texttt{.obs['leiden']} = cluster assignments
+        \end{itemize}
+    \item \textbf{DEG ανάλυση:}
+        \begin{itemize}
+            \item Αποτελέσματα στο \texttt{.uns['rank\_genes\_groups']}
+        \end{itemize}
+    \item \textbf{Annotation:}
+        \begin{itemize}
+            \item ORA scores στο \texttt{.obsm['ora\_estimate']}
+            \item WMS scores ως νέα στήλη στο \texttt{.obs}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Προκλήσεις και Λύσεις}
+\begin{itemize}
+    \item \textbf{Διαχείριση Μεγάλων Δεδομένων:} Η ανάλυση scRNA-seq οδηγεί συχνά σε τεράστια matrices. Χρησιμοποιήθηκε φειδωλή χρήση \texttt{.copy()} για αποφυγή memory spikes. Επίσης, γίνεται επιλογή HVGs για μείωση διαστάσεων και πειραματισμός με μικρότερα datasets στη φάση ανάπτυξης.
+    \item \textbf{Session State στο Streamlit:} Η διατήρηση ενδιάμεσης κατάστασης κρίσιμη για interactive ανάλυση. Αντιμετωπίστηκαν προβλήματα με το auto-rerun και χρησιμοποιήθηκαν buttons και λογική για να αποφεύγονται ανεπιθύμητα refresh.
+    \item \textbf{Συμβατότητα Εξαρτήσεων:} Πολλά πακέτα (π.χ. scanpy, hdf5plugin) είναι δύσκολο να εγκατασταθούν σε Windows. Εφαρμόστηκε χρήση WSL, και τελικά Dockerization με \texttt{python:3.12-slim} image, για πλήρη reproducibility.
+    \item \textbf{Διαδραστικότητα Οπτικοποιήσεων:} Οι οπτικοποιήσεις (π.χ. UMAP, Volcano) πρέπει να ενημερώνονται άμεσα με βάση τις επιλογές του χρήστη. Εφαρμόστηκε ανανέωση plots μέσω button triggers και προσεκτικός χειρισμός session state.
+\end{itemize}
+
+% --- Οπτικοποιήσεις των Αποτελεσμάτων που Παράγει η Εφαρμογή ---
+\section{Οπτικοποιήσεις των Αποτελεσμάτων που Παράγει η Εφαρμογή}
+\label{sec:visualizations}
+Η εφαρμογή παράγει:
+\begin{itemize}
+    \item \textbf{Violin Plots} για QC (πριν/μετά) σε metrics: αριθμός γονιδίων/cell, συνολικό count, %mitochondrial
+    \item \textbf{UMAP Plots} με δυνατότητα χρωματισμού: clusters, batch, condition, gene expression
+    \item \textbf{Volcano Plots} για τα DEGs (logFC vs -log10(adj. p-value))
+    \item \textbf{Heatmaps} για ORA scores και \textbf{Violin Plots} για WMS (cell type annotation)
+\end{itemize}
+
+% (τα placeholders των εικόνων τα κρατάς ή προσθέτεις τις δικές σου εικόνες)
+
+% --- Περιγραφή Dockerization της Εφαρμογής ---
+\section{Περιγραφή Dockerization της Εφαρμογής}
+\label{sec:dockerization}
+\subsection{Dockerfile}
+\begin{itemize}
+    \item \texttt{FROM python:3.12-slim}: Λεπτή (slim) εικόνα για μικρό μέγεθος, χωρίς περιττά packages.
+    \item \texttt{WORKDIR /app}: Όλες οι εντολές εκτελούνται στο /app.
+    \item \texttt{COPY requirements.txt .} και \texttt{RUN pip install ...}: Πρώτα εγκαθίστανται οι εξαρτήσεις, ώστε να γίνεται caching και να μη χτίζεται ξανά όλο το image σε μικρές αλλαγές στον κώδικα.
+    \item \texttt{COPY app.py .} και \texttt{COPY pipeline\_scripts/ ./pipeline\_scripts/}: Κώδικας εφαρμογής.
+    \item \texttt{EXPOSE 8501}: Ανοίγει το port για το Streamlit server.
+    \item \texttt{ENV ...}: Περιβάλλον για Streamlit (π.χ. headless, port)
+    \item \texttt{HEALTHCHECK ...}: Ελέγχει εάν τρέχει το app στο port 8501 (endpoint health)
+    \item \texttt{CMD ["streamlit", "run", "app.py"]}: Εκκινεί το Streamlit με το app.
+\end{itemize}
+
+(Παράδειγμα Dockerfile παρατίθεται στο listings)
+
+\subsection{.dockerignore}
+Στο .dockerignore εξαιρούνται:
+\begin{itemize}
+    \item \texttt{.git}, \texttt{.venv}, \texttt{\_\_pycache\_\_}, \texttt{data/} -- για μείωση μεγέθους image και αποφυγή sensitive data
+    \item Η χρήση external volume (\texttt{-v ...}) ενθαρρύνεται για τα δεδομένα.
+\end{itemize}
+
+\subsection{Build/Run}
+\begin{itemize}
+    \item \texttt{docker build -t streamlit-scrna-app .} το \texttt{-t} δίνει όνομα, η τελεία δηλώνει το path του Dockerfile.
+    \item \texttt{docker run -p 8501:8501 -v \$\{PWD\}/data/h5ad\_filt:/app/data/h5ad\_filt streamlit-scrna-app} τρέχει το container, αντιστοιχίζει το local port 8501 και κάνει mount τα αρχεία δεδομένων.
+    \item Σημαντικό: Τα δεδομένα πρέπει να βρίσκονται σε \texttt{data/h5ad\_filt} τοπικά, ώστε να είναι προσβάσιμα.
+\end{itemize}
+
+% --- Συμπεράσματα ---
+\section{Συμπεράσματα}
+\label{sec:symperasmata}
+Η εργασία ολοκληρώθηκε με επιτυχία:
+\begin{itemize}
+    \item Δημιουργήθηκε πλήρως παραμετροποιήσιμη και επεκτάσιμη web εφαρμογή για ανάλυση scRNA-seq με Streamlit.
+    \item Όλο το pipeline (QC, integration, clustering, DEG, annotation) γίνεται από ένα φιλικό interface, με ενδιάμεση αποθήκευση και εύκολες οπτικοποιήσεις.
+    \item Υιοθετήθηκε Dockerization για αποφυγή προβλημάτων εξαρτήσεων και 100\% reproducibility.
+    \item Αντιμετωπίστηκαν δυσκολίες (μεγάλα δεδομένα, streamlit state, πακέτα) με έξυπνες τεχνικές.
+    \item Προοπτικές: Υποστήριξη advanced ανάλυσης (trajectories), διαδραστικά/3D plots, προσθήκη annotation databases.
+\end{itemize}
+
+% --- Βιβλιογραφία ---
+\section*{Βιβλιογραφία}
+\addcontentsline{toc}{section}{Βιβλιογραφία}
+\begin{thebibliography}{99}
+    \bibitem{scanpy} Wolf, F. A., Angerer, P., \& Theis, F. J. (2018). SCANPY: large-scale single-cell gene expression data analysis. Genome biology, 19(1), 1-5.
+    \bibitem{streamlit} Streamlit Documentation. (2024). \url{https://docs.streamlit.io}
+    \bibitem{decoupler} Badia-i-Mompel, P., et al. (2022). decoupler: Ensemble methods for gene set analysis. Bioinformatics, 38(7), 1929–1931.
+    \bibitem{scanorama} Hie, B., et al. (2019). Efficient integration of heterogeneous single-cell transcriptomes using Scanorama. Nature Biotechnology, 37(6), 685–691.
+    \bibitem{leidenalg} Traag, V. A., Waltman, L., and van Eck, N. J. (2019). From Louvain to Leiden: guaranteeing well-connected communities. Scientific Reports, 9, 5233.
+\end{thebibliography}
+\end{document}

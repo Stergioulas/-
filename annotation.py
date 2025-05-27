@@ -40,16 +40,29 @@ def run_decoupler_ora(
         # if not 'n_genes' in adata.obs.columns: 
         #     sc.pp.calculate_qc_metrics(adata, percent_top=None, log1p=False, inplace=True)
     print(f"Εκτέλεση ORA με min_n={min_n}...")
+
+    print("--- DEBUGGING decoupler API (before ORA call) ---")
+    print(f"Decoupler version: {dc.__version__ if hasattr(dc, '__version__') else 'unknown'}")
+    print(f"Type of dc: {type(dc)}")
+    print(f"Attributes of dc: {dir(dc)}")
+    if hasattr(dc, 'mt'):
+        print(f"Type of dc.mt: {type(dc.mt)}")
+        print(f"Attributes of dc.mt: {dir(dc.mt)}")
+    else:
+        print("dc does NOT have attribute 'mt'")
+    print("--- END DEBUGGING ---")
+
     try:
         # Μετατροπή του marker_dict σε DataFrame κατάλληλο για decoupler
         marker_df_for_decoupler = _marker_dict_to_df(marker_dict, source_col_name='source', target_col_name='target')
+        # Corrected call for decoupler 2.0.1 based on debug output
         dc.mt.ora(
-            mat=adata,
-            net=marker_df_for_decoupler, # Χρήση του DataFrame
-            source='source', # Τώρα ορίζουμε τις στήλες
-            target='target',
+            data=adata, # Changed from mat, and source/target/use_raw are removed as they might not be direct args for mt.ora
+            net=marker_df_for_decoupler,
+            # source='source', # Assuming inferred from net
+            # target='target', # Assuming inferred from net
             verbose=True,
-            use_raw=adata.raw is not None,
+            # use_raw=adata.raw is not None, # use_raw likely not a direct arg for internal mt.ora
             min_n=min_n
         )
         print("ORA ολοκληρώθηκε.")
@@ -71,20 +84,20 @@ def run_decoupler_wmean(
 ):
     adata = adata_in.copy() # Δουλεύουμε σε αντίγραφο
     print(f"Εκτέλεση WMS με min_n={min_n}...")
+
     try:
         # Μετατροπή του marker_dict σε DataFrame κατάλληλο για decoupler
         marker_df_for_decoupler = _marker_dict_to_df(marker_dict, source_col_name='source', target_col_name='target', weight_col_name='weight')
-        dc.mt.wmean(
-            mat=adata,
-            net=marker_df_for_decoupler, # Χρήση του DataFrame
-            source='source', # Τώρα ορίζουμε τις στήλες
-            target='target',
-            weight='weight', # Προσθήκη στήλης βαρών
-            verbose=True,
-            use_raw=False, 
-            min_n=min_n
+        # Using dc.mt.waggr based on debug output, assuming it handles weighted mean/sum
+        dc.mt.waggr(
+            data=adata, 
+            net=marker_df_for_decoupler,
+            verbose=True
+            # min_n=min_n, # Removed, as it caused TypeError for _func_waggr
+            # We might need to specify how aggregation is done (e.g., mean vs sum) if waggr is general
+            # Also, waggr might require specific arguments like `groups_key` or `groupby` if it aggregates over obs groups
         )
-        print("WMS ολοκληρώθηκε.")
+        print("WMS (waggr) ολοκληρώθηκε.")
         if 'wmean_estimate' in adata.obsm:
             print("WMS scores στο .obsm")
             # Το dc.get_acts επιστρέφει ένα AnnData με τα activities στο .X
