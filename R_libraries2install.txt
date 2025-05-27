@@ -1,0 +1,14 @@
+install.packages("https://seurat.nygenome.org/src/contrib/ifnb.SeuratData_3.0.0.tar.gz", repos = NULL, type = "source") 
+install.packages('metap')
+install.packages('Seurat')
+
+
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+remotes::install_github("mojaveazure/seurat-disk")
+
+
+devtools::install_github('satijalab/seurat-data')
+BiocManager::install('multtest')
+
