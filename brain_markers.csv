@@ -1,0 +1,999 @@
+cell_name,Symbol
+Vascular smooth muscle cell(VSMC),ACTA2
+Astrocyte,CD80
+Astrocyte,CD86
+Astrocyte,CD40
+Astrocyte,GFAP
+Astrocyte,C5AR1
+Endothelial cell,PECAM1
+Endothelial cell,VCAM1
+Neuron,MARK4
+Oligodendrocyte,RTN4
+Microglial cell,CD68
+Neuron,GFAP
+Neuron,MAP2
+Pericyte,CSPG4
+Neuron,DLX5
+Neuron,KCNK1
+Neuron,DLX2
+Neuron,SST
+Astrocyte,CYBRD1
+Oligodendrocyte,PLP1
+Astrocyte,GLI3
+Oligodendrocyte,SEC14L5
+Neuron,EGFR
+Oligodendrocyte,MAP6D1
+Oligodendrocyte,LGI3
+Astrocyte,FGFR3
+Microglial cell,BCL2A1
+Endothelial cell,FLT1
+Astrocyte,RNF43
+Astrocyte,TRIM66
+Oligodendrocyte,MAL
+Astrocyte,SLC30A10
+Oligodendrocyte,UGT8
+Neuron,PNOC
+Astrocyte,SLC4A4
+Astrocyte,CHRDL1
+Astrocyte,HGF
+Oligodendrocyte,MBP
+Microglial cell,LAPTM5
+Astrocyte,SLC14A1
+Neuron,RELN
+Astrocyte,NWD1
+Astrocyte,CTH
+Neuron,NFASC
+Neuron,NXPH1
+Neuron,GLRA2
+Astrocyte,ITGA7
+Astrocyte,ALDH1L1
+Neuron,DLX1
+Oligodendrocyte,GSN
+Microglial cell,HLA-DRA
+Oligodendrocyte,ASPA
+Astrocyte,SORCS2
+Neuron,DPYSL5
+Neuron,CNTN4
+Oligodendrocyte,PLEKHB1
+Neuron,LNX1
+Neuron,LRRTM3
+Microglial cell,CSF1R
+Microglial cell,GPR183
+Oligodendrocyte,ADAMTS4
+Astrocyte,C16orf89
+Microglial cell,CCL2
+Oligodendrocyte,CDK18
+Oligodendrocyte,GPR37
+Astrocyte,PAQR6
+Oligodendrocyte,CNP
+Neuron,ELAPOR1
+Oligodendrocyte,SHC4
+Astrocyte,CBS
+Astrocyte,ATP13A4
+Neuron,SLC10A4
+Oligodendrocyte,KLK6
+Oligodendrocyte,KCNH8
+Astrocyte,BMPR1B
+Neuron,GRIA3
+Oligodendrocyte,PPP1R14A
+Endothelial cell,A2M
+Neuron,NELL1
+Endothelial cell,TM4SF1
+Neuron,TMEM130
+Neuron,DLX6
+Oligodendrocyte,ERMN
+Microglial cell,CCL4
+Astrocyte,ITGB4
+Astrocyte,PPP1R3C
+Oligodendrocyte,OPALIN
+Oligodendrocyte,GRM3
+Endothelial cell,APOLD1
+Oligodendrocyte,LPAR1
+Oligodendrocyte,GJB1
+Neuron,CDO1
+Oligodendrocyte,MAG
+Neuron,ARMH4
+Oligodendrocyte,FA2H
+Neuron,DCN
+Oligodendrocyte,MOBP
+Oligodendrocyte,DAAM2
+Neuron,COBL
+Oligodendrocyte,DPYD
+Neuron,SLITRK1
+Oligodendrocyte,CLDN11
+Microglial cell,CD14
+Microglial cell,CD83
+Astrocyte,AQP4
+Astrocyte,GLIS3
+Oligodendrocyte,OLIG2
+Astrocyte,NFIA
+Astrocyte,S100B
+Neuron,ENO2
+Neuron,SYP
+Astrocyte,CST3
+Oligodendrocyte,SNX1
+Astrocyte,IER2
+Oligodendrocyte,GRIA4
+Astrocyte,PAPLN
+Astrocyte,GABRB1
+Oligodendrocyte,TMEM97
+Astrocyte,CLU
+Oligodendrocyte,TM7SF2
+Oligodendrocyte,GRIA2
+Astrocyte,PRLHR
+Astrocyte,FTH1
+Oligodendrocyte,ARL4A
+Astrocyte,HLA-E
+Astrocyte,APOE
+Oligodendrocyte,MAML2
+Oligodendrocyte,SERINC5
+Astrocyte,NTRK2
+Oligodendrocyte,EPN2
+Astrocyte,MLC1
+Astrocyte,LIX1
+Astrocyte,HIF1A
+Astrocyte,TNS1
+Oligodendrocyte,COX7C
+Oligodendrocyte,RTKN
+Oligodendrocyte,FAU
+Astrocyte,TIMP3
+Oligodendrocyte,EIF3L
+Oligodendrocyte,ACTG1
+Astrocyte,PRRT2
+Astrocyte,DNASE2
+Oligodendrocyte,DLL3
+Oligodendrocyte,ATCAY
+Astrocyte,CHST9
+Astrocyte,TACR1
+Oligodendrocyte,EIF3E
+Oligodendrocyte,TUBB
+Oligodendrocyte,MTSS1
+Oligodendrocyte,SIRT2
+Astrocyte,GRIA1
+Oligodendrocyte,PID1
+Astrocyte,SPARCL1
+Oligodendrocyte,SLC1A1
+Astrocyte,TPCN1
+Astrocyte,CPVL
+Oligodendrocyte,MIF
+Oligodendrocyte,POLR2F
+Astrocyte,SEMA6A
+Oligodendrocyte,EBP
+Oligodendrocyte,KCNIP3
+Astrocyte,KCNIP2
+Astrocyte,TRIL
+Astrocyte,GRAMD2B
+Oligodendrocyte,HIPK2
+Astrocyte,TSPAN12
+Astrocyte,IGFBP7
+Oligodendrocyte,SHISA4
+Astrocyte,MMD2
+Oligodendrocyte,DLL1
+Astrocyte,CASTOR1
+Oligodendrocyte,RPS23
+Oligodendrocyte,CDHR1
+Astrocyte,HEPN1
+Oligodendrocyte,RAB2A
+Oligodendrocyte,VIPR2
+Astrocyte,CASQ1
+Oligodendrocyte,FABP7
+Astrocyte,TOB2
+Astrocyte,NOG
+Oligodendrocyte,RAB33A
+Oligodendrocyte,MAP2
+Oligodendrocyte,GPR37L1
+Oligodendrocyte,RGMB
+Oligodendrocyte,RPL13A
+Oligodendrocyte,TCF12
+Oligodendrocyte,GPR17
+Oligodendrocyte,CRB1
+Astrocyte,PLTP
+Astrocyte,MAFB
+Astrocyte,PON2
+Oligodendrocyte,ASIC1
+Astrocyte,DGKG
+Oligodendrocyte,PHLDB1
+Astrocyte,CPNE5
+Oligodendrocyte,LHFPL3
+Astrocyte,LYPD1
+Oligodendrocyte,IFITM10
+Astrocyte,FOSB
+Astrocyte,P2RY1
+Astrocyte,EDNRB
+Astrocyte,FXYD7
+Oligodendrocyte,NME1
+Oligodendrocyte,NXPH1
+Oligodendrocyte,TMEFF2
+Astrocyte,SCG2
+Oligodendrocyte,ATP5F1E
+Astrocyte,ID1
+Astrocyte,ALDOC
+Astrocyte,SOX9
+Astrocyte,ZFP36L1
+Astrocyte,SPON1
+Oligodendrocyte,SNX22
+Astrocyte,SRPX
+Astrocyte,ATP1B2
+Astrocyte,AGT
+Astrocyte,SPOCK1
+Astrocyte,ATF3
+Astrocyte,DKK3
+Oligodendrocyte,TMSB10
+Astrocyte,JUNB
+Astrocyte,RND3
+Oligodendrocyte,RPS17
+Oligodendrocyte,THY1
+Oligodendrocyte,EEF1B2
+Astrocyte,METTL7A
+Astrocyte,NHSL1
+Oligodendrocyte,APOD
+Oligodendrocyte,MICAL1
+Astrocyte,SERPINA3
+Astrocyte,PFKFB3
+Oligodendrocyte,DHCR24
+Oligodendrocyte,MEST
+Astrocyte,LHFPL6
+Astrocyte,RHOB
+Astrocyte,CRYAB
+Oligodendrocyte,PHLDA1
+Astrocyte,ABCA1
+Oligodendrocyte,SGK1
+Oligodendrocyte,FDPS
+Oligodendrocyte,HIP1
+Oligodendrocyte,SOX8
+Oligodendrocyte,LIMA1
+Astrocyte,KCNH7
+Astrocyte,JUN
+Astrocyte,EGLN3
+Oligodendrocyte,CDH13
+Astrocyte,NFKBIA
+Astrocyte,LRIG1
+Oligodendrocyte,TMSB4X
+Astrocyte,FOS
+Oligodendrocyte,ZDHHC9
+Astrocyte,HNMT
+Astrocyte,EEPD1
+Oligodendrocyte,ZCCHC24
+Astrocyte,EPAS1
+Oligodendrocyte,MARCKSL1
+Astrocyte,LPL
+Oligodendrocyte,NEU4
+Oligodendrocyte,LMF1
+Astrocyte,HEY1
+Astrocyte,NRP1
+Oligodendrocyte,FGFBP3
+Oligodendrocyte,NPM1
+Astrocyte,ARHGEF26
+Oligodendrocyte,P2RX7
+Astrocyte,CA12
+Oligodendrocyte,DHCR7
+Oligodendrocyte,SHD
+Oligodendrocyte,PHACTR3
+Oligodendrocyte,UQCRB
+Astrocyte,CDC42EP4
+Oligodendrocyte,FXYD6
+Oligodendrocyte,OLIG1
+Astrocyte,RASSF4
+Astrocyte,MTHFD2
+Oligodendrocyte,RGR
+Astrocyte,MT1X
+Oligodendrocyte,AFAP1L2
+Astrocyte,ST6GAL2
+Oligodendrocyte,TUBB3
+Astrocyte,ZFP36L2
+Astrocyte,JUND
+Astrocyte,SLC1A2
+Astrocyte,SF3A1
+Astrocyte,BBOX1
+Oligodendrocyte,RACK1
+Astrocyte,HSPB8
+Oligodendrocyte,NPPA
+Oligodendrocyte,TUBB4A
+Astrocyte,DTNA
+Oligodendrocyte,LIMS2
+Oligodendrocyte,RPSAP58
+Oligodendrocyte,ZEB2
+Oligodendrocyte,OMG
+Astrocyte,BTG2
+Astrocyte,ADCYAP1R1
+Astrocyte,EFEMP1
+Astrocyte,GLUL
+Astrocyte,GPR75
+Oligodendrocyte,MYT1
+Astrocyte,DOK5
+Astrocyte,IL11RA
+Oligodendrocyte,SNHG29
+Oligodendrocyte,TAGLN3
+Astrocyte,ZFP36
+Astrocyte,F3
+Astrocyte,RFX4
+Astrocyte,HEPACAM
+Astrocyte,MIR9-1HG
+Astrocyte,SLC1A3
+Oligodendrocyte,TNK2
+Astrocyte,L1CAM
+Oligodendrocyte,PLPPR1
+Astrocyte,SLC39A11
+Oligodendrocyte,LRRN1
+Oligodendrocyte,FERMT1
+Astrocyte,ACSL6
+Oligodendrocyte,NME2
+Astrocyte,DNAJB1
+Oligodendrocyte,ACAT2
+Oligodendrocyte,WSCD1
+Astrocyte,TBC1D10A
+Oligodendrocyte,RPL31
+Oligodendrocyte,NAP1L1
+Oligodendrocyte,MAP1A
+Astrocyte,TSC22D4
+Oligodendrocyte,BIN1
+Astrocyte,RGMA
+Astrocyte,PEA15
+Oligodendrocyte,GRIK2
+Oligodendrocyte,SCD
+Astrocyte,SORL1
+Astrocyte,NDRG2
+Astrocyte,ID4
+Astrocyte,IL33
+Oligodendrocyte,CSPG4
+Oligodendrocyte,GAP43
+Astrocyte,SSTR2
+Astrocyte,HIF3A
+Astrocyte,CPE
+Oligodendrocyte,TRAF4
+Oligodendrocyte,C2orf27A
+Astrocyte,TMEM151B
+Oligodendrocyte,NACA
+Astrocyte,PSAP
+Oligodendrocyte,ANGPTL2
+Oligodendrocyte,RPS2
+Oligodendrocyte,LDHB
+Astrocyte,ANLN
+Astrocyte,LCAT
+Astrocyte,RASL10A
+Astrocyte,LRRC8A
+Oligodendrocyte,KLRC2
+Astrocyte,ZFAND5
+Astrocyte,EZR
+Oligodendrocyte,EEF2
+Astrocyte,MT2A
+Oligodendrocyte,AMOTL2
+Astrocyte,DAND5
+Astrocyte,GADD45B
+Oligodendrocyte,PGRMC1
+Astrocyte,PER1
+Astrocyte,KIF21A
+Oligodendrocyte,OPCML
+Oligodendrocyte,CXADR
+Astrocyte,SCG3
+Microglial cell,TAL1
+Microglial cell,BIN1
+Microglial cell,NAV3
+Microglial cell,BHLHE41
+Microglial cell,RHOB
+Microglial cell,ADORA3
+Microglial cell,P2RY12
+Microglial cell,SIGLEC8
+Microglial cell,ADRB2
+Microglial cell,SLC1A3
+Microglial cell,SALL1
+Microglial cell,SPRY1
+Microglial cell,KLF2
+Microglial cell,AIF1
+Endothelial cell,CDH5
+Endothelial cell,OCLN
+Endothelial cell,ABCG2
+Endothelial cell,ABCB1
+Endothelial cell,ICAM1
+Endothelial cell,ABCC1
+Microglial cell,PTPRC
+Microglial cell,TMEM119
+Neuron,SOX1
+Neuron,PAX6
+Fibroblast,THY1
+Microglial cell,ARHGDIB
+Microglial cell,ITGAM
+Oligodendrocyte,MOG
+Microglial cell,ABI3
+Microglial cell,CX3CR1
+Microglial cell,FCER1G
+Microglial cell,APBB1IP
+Endothelial cell,ITM2A
+Endothelial cell,CLDN5
+Endothelial cell,ADGRL4
+Microglial cell,TNF
+Microglial cell,DPP4
+Astrocyte,CHI3L1
+Microglial cell,CD74
+Pericyte,AMBP
+Neuron,SATB2
+Neuron,BCL11B
+Microglial cell,GFAP
+Oligodendrocyte,TF
+Oligodendrocyte,TNR
+Oligodendrocyte,ALCAM
+Oligodendrocyte,PLLP
+Neuron,SYT11
+Neuron,STMN2
+Neuron,CDK1
+Neuron,SOX4
+Neuron,RRM2
+Neuron,ZIC1
+Neuron,TOP2A
+Astrocyte,THBS1
+Astrocyte,DIO2
+Neuron,PROX1
+Neuron,OLIG2
+Neuron,RBFOX3
+Endothelial cell,CD34
+Microglial cell,C1QA
+Endothelial cell,VWF
+Endothelial cell,CLEC14A
+Microglial cell,C1QB
+Neuron,RBFOX1
+Neuron,SLC12A5
+Neuron,GABRA1
+Neuron,SYT1
+Astrocyte,FABP7
+Oligodendrocyte,SOX10
+Oligodendrocyte,PTGDS
+Neuron,SOX9
+Neuron,NEUROD6
+Neuron,VIM
+Neuron,DCX
+Neuron,MAPT
+Neuron,SOX2
+Neuron,BEX3
+Microglial cell,HLA-B
+Neuron,MAP1B
+Neuron,CCK
+Neuron,NRGN
+Astrocyte,OLIG2
+Neuron,GAD2
+Astrocyte,PCDH15
+Astrocyte,OLIG1
+Neuron,SLC17A6
+Neuron,GAD1
+Neuron,SNAP25
+Astrocyte,PDGFRA
+Astrocyte,ALDH1A1
+Endothelial cell,VTN
+Astrocyte,VIM
+Neuron,SLC32A1
+Neuron,SLC17A7
+Astrocyte,PTGDS
+Astrocyte,GJA1
+Microglial cell,SLC2A5
+Microglial cell,P2RY13
+Microglial cell,MARCKS
+Astrocyte,APC
+Neuron,MYT1L
+Neuron,FOS
+Neuron,NR2F1
+Neuron,ASCL1
+Neuron,SOX11
+Neuron,JAG1
+Neuron,CD24
+Neuron,NCAM1
+Neuron,MSI1
+Neuron,POU3F2
+Neuron,TUBB3
+Neuron,GABBR1
+Neuron,INA
+Neuron,FOXG1
+Astrocyte,IRAG1
+Astrocyte,STOX1
+Astrocyte,GASK1B
+Astrocyte,ITGA6
+Astrocyte,LRRC3B
+Astrocyte,RYR3
+Neuron,GRIN1
+Microglial cell,CD40
+Microglial cell,NOS2
+Neuron,NEUROD2
+Astrocyte,CD44
+Microglial cell,FCGR1A
+Endothelial cell,CAV1
+Endothelial cell,IFITM1
+Neuron,NES
+Oligodendrocyte,VCAN
+Oligodendrocyte,APC
+Neuron,MOG
+Neuron,SLC1A2
+Neuron,PDGFRA
+Neuron,CD68
+Neuron,SOX10
+Neuron,VCAN
+Neuron,SLC1A3
+Neuron,AQP4
+Neuron,CX3CR1
+Neuron,ALDH1L1
+Neuron,APOE
+Neuron,OLIG1
+Neuron,GRIN2B
+Neuron,MBP
+Neuron,FLT1
+Neuron,TYROBP
+Pericyte,ABCC9
+Pericyte,RGS5
+Pericyte,CD248
+Pericyte,FOXC1
+Pericyte,PDGFRB
+Pericyte,FOXF2
+Pericyte,KCNJ8
+Pericyte,CD19
+Vascular smooth muscle cell(VSMC),ACTA2
+Endothelial cell,ERG
+Neuron,GRIA1
+Microglial cell,CYBB
+Microglial cell,ASPH
+Astrocyte,ITGA1
+Microglial cell,STAB1
+Astrocyte,CD109
+Astrocyte,COL12A1
+Neuron,CACNA2D2
+Neuron,CACNA2D1
+Astrocyte,LAMB2
+Neuron,LHX6
+Neuron,SULF1
+Neuron,CRH
+Neuron,LCP2
+Neuron,TYR
+Neuron,LAMP5
+Neuron,OPRM1
+Neuron,PVALB
+Neuron,CALB2
+Neuron,ADARB2
+Neuron,SOX6
+Neuron,HPGD
+Neuron,DACH2
+Neuron,ISOC1
+Neuron,CBLN1
+Neuron,CALB1
+Neuron,VIP
+Neuron,NCKAP5
+Neuron,TH
+Neuron,NOS1
+Neuron,NOG
+Neuron,TAC1
+Neuron,NRG1
+Neuron,TAC3
+Neuron,SEMA3C
+Neuron,STK32A
+Neuron,TRHDE
+Neuron,NMBR
+Neuron,HTR2C
+Neuron,ABI3BP
+Neuron,MEPE
+Neuron,SSTR1
+Neuron,GXYLT2
+Neuron,LGR5
+Neuron,ID2
+Microglial cell,CD163
+Microglial cell,TEK
+Oligodendrocyte,GRIA1
+Microglial cell,B2M
+Microglial cell,BST2
+Microglial cell,HMOX1
+Microglial cell,MNDA
+Microglial cell,TUBA1A
+Microglial cell,C3AR1
+Microglial cell,GNG7
+Microglial cell,CCT3
+Microglial cell,HSPA8
+Microglial cell,TLR2
+Microglial cell,CCND1
+Microglial cell,DOCK8
+Microglial cell,C3
+Endothelial cell,DCN
+Neuron,NPY
+Neuron,SCGN
+Pericyte,ANPEP
+Microglial cell,C1QC
+Pericyte,KAT14
+Astrocyte,MBP
+Pericyte,COL1A1
+Oligodendrocyte,ZNF488
+Pericyte,COL1A2
+Pericyte,COL3A1
+Astrocyte,ATP1A2
+Fibroblast,PDGFRA
+Fibroblast,DCN
+Fibroblast,COL1A1
+Astrocyte,MT3
+Microglial cell,ITGAX
+Microglial cell,GPR34
+Microglial cell,OLFML3
+Neuron,CHAT
+Fibroblast,SNAI1
+Fibroblast,VIM
+Pericyte,MCAM
+Fibroblast,COL3A1
+Fibroblast,LUM
+Pericyte,DCN
+Endothelial cell,ESM1
+Neuron,KCNS3
+Neuron,MRC1
+Neuron,KNSTRN
+Neuron,SCN1A
+Neuron,SCN3A
+Neuron,EOMES
+Neuron,PTPRZ1
+Neuron,FABP7
+Neuron,SHANK3
+Pericyte,BMP4
+Neuron,UCHL1
+Neuron,NETO2
+Oligodendrocyte,PRKCQ
+Neuron,STMN3
+Oligodendrocyte,GPR62
+Neuron,PRKAA2
+Neuron,SNRPN
+Neuron,THY1
+Neuron,VDAC3
+Oligodendrocyte,ENPP6
+Oligodendrocyte,SGK2
+Neuron,UBE3A
+Neuron,NSF
+Neuron,NCDN
+Astrocyte,ACSBG1
+Neuron,YWHAH
+Astrocyte,SLC25A18
+Neuron,YWHAG
+Oligodendrocyte,GALNT6
+Astrocyte,SLC39A12
+Astrocyte,PPP1R3G
+Neuron,EPHA7
+Neuron,PNMA2
+Oligodendrocyte,PLEKHH1
+Neuron,ATP6V1A
+Neuron,NEFL
+Astrocyte,GJB6
+Astrocyte,SLC15A2
+Oligodendrocyte,EVI2A
+Oligodendrocyte,ERBB3
+Oligodendrocyte,RFFL
+Neuron,ARF3
+Oligodendrocyte,BCAS1
+Neuron,PREPL
+Astrocyte,TTPA
+Microglial cell,CCL3
+Pericyte,FOXC2
+Astrocyte,SYNE3
+Neuron,SYNE1
+Microglial cell,SPI1
+Neuron,PTBP2
+Astrocyte,SOX2
+Microglial cell,PDGFRA
+Microglial cell,IL1B
+Microglial cell,APOE
+Microglial cell,NLRP1
+Microglial cell,SOX2
+Microglial cell,CTSB
+Microglial cell,IFNGR1
+Microglial cell,TREM2
+Astrocyte,TSPO
+Microglial cell,TSPO
+Microglial cell,TMEM19
+Neuron,TBR1
+Astrocyte,IQCK
+Microglial cell,PILRA
+Astrocyte,MEF2C
+Microglial cell,MS4A6A
+Fibroblast,STRA6
+Fibroblast,ISLR
+Fibroblast,C7
+Fibroblast,TDO2
+Oligodendrocyte,EDIL3
+Oligodendrocyte,CNDP1
+Neuron,GRIK1
+Microglial cell,MOBP
+Microglial cell,VCAN
+Oligodendrocyte,SGSM3
+Vascular smooth muscle cell(VSMC),CEBPB
+Vascular smooth muscle cell(VSMC),IGFBP5
+Vascular smooth muscle cell(VSMC),CDKN1A
+Endothelial cell,MCL1
+Endothelial cell,ETS1
+Endothelial cell,PRKCH
+Astrocyte,LRP1
+Fibroblast,IGFBP5
+Fibroblast,LGALS3
+Fibroblast,KCNT2
+Microglial cell,IRF8
+Microglial cell,GUSB
+Microglial cell,TPD52
+Microglial cell,TMEM163
+Microglial cell,GLB1
+Microglial cell,GALK1
+Microglial cell,BHLHE40
+Microglial cell,GRIA2
+Microglial cell,CREG1
+Microglial cell,CST7
+Microglial cell,GRN
+Microglial cell,GAS7
+Microglial cell,GM2A
+Microglial cell,ATOH8
+Microglial cell,ST14
+Microglial cell,COPS9
+Microglial cell,TPI1
+Microglial cell,TCAP
+Microglial cell,TOX2
+Microglial cell,SSR4
+Microglial cell,RPS19
+Microglial cell,TYROBP
+Microglial cell,CXCR4
+Microglial cell,GYPC
+Microglial cell,GBA
+Microglial cell,RPS25
+Microglial cell,SLAMF9
+Microglial cell,CHCHD5
+Microglial cell,ZNF696
+Microglial cell,GPR65
+Microglial cell,HIF1A
+Astrocyte,PISD
+Microglial cell,SULF2
+Microglial cell,PLIN2
+Microglial cell,ACACA
+Microglial cell,TIMP2
+Microglial cell,RPS10
+Microglial cell,RPS18
+Microglial cell,GSTM5
+Microglial cell,COLEC12
+Microglial cell,TPT1
+Microglial cell,ACD
+Microglial cell,RPL37
+Microglial cell,DPYS
+Microglial cell,SMAD7
+Microglial cell,RPS20
+Microglial cell,LRPAP1
+Microglial cell,CBX6
+Microglial cell,RPLP2
+Microglial cell,ZNF703
+Microglial cell,PDCD1
+Microglial cell,PLAUR
+Microglial cell,A1BG
+Microglial cell,ADAM8
+Microglial cell,TLN2
+Microglial cell,RPS16
+Microglial cell,NCEH1
+Microglial cell,EEF1A1
+Microglial cell,LGALS3BP
+Microglial cell,ETL4
+Microglial cell,RPL23
+Microglial cell,ATP1A3
+Microglial cell,LOX
+Microglial cell,CTBP1-AS
+Microglial cell,AQP6
+Microglial cell,LPL
+Microglial cell,TTYH3
+Microglial cell,RPS15
+Microglial cell,RPS12
+Microglial cell,RPS9
+Microglial cell,CTSZ
+Microglial cell,RPS21
+Microglial cell,CD34
+Microglial cell,RFTN1
+Microglial cell,RPS26
+Microglial cell,RPS27A
+Microglial cell,CH25H
+Microglial cell,S100A4
+Microglial cell,EMP2
+Microglial cell,SECTM1
+Microglial cell,ASTN1
+Microglial cell,ARSA
+Microglial cell,ATP6V0C
+Microglial cell,SPP1
+Microglial cell,PKM
+Microglial cell,PHETA1
+Microglial cell,SYNDIG1L
+Microglial cell,H2BP1
+Microglial cell,PGK1
+Microglial cell,HEXA
+Microglial cell,RPL13A
+Microglial cell,RPS28
+Microglial cell,ECM1
+Microglial cell,ATP1B3
+Astrocyte,MPG
+Microglial cell,CHST2
+Microglial cell,RPL37A
+Microglial cell,MAMDC2
+Microglial cell,MPEG1
+Microglial cell,SLC11A1
+Microglial cell,CXCL14
+Microglial cell,BAIAP2L2
+Microglial cell,MYO5A
+Microglial cell,NDUFA1
+Microglial cell,PGAM1
+Microglial cell,SERPINE2
+Microglial cell,RPS24
+Microglial cell,TNFSF8
+Microglial cell,CD9
+Microglial cell,SMIM3
+Microglial cell,PTPRG
+Microglial cell,SCPEP1
+Microglial cell,DPYD
+Microglial cell,EEF1B2
+Microglial cell,KCNJ5
+Microglial cell,ATOX1
+Microglial cell,EPHX1
+Microglial cell,RPL32
+Microglial cell,SH3PXD2B
+Microglial cell,RPL39
+Microglial cell,MYO1E
+Microglial cell,PDCD6IPP2
+Microglial cell,RPS14
+Microglial cell,FABP3
+Microglial cell,RPL18A
+Microglial cell,IL4I1
+Microglial cell,FABP5
+Microglial cell,SDF4
+Microglial cell,TGFBI
+Microglial cell,DNAJB14
+Microglial cell,GNAS
+Microglial cell,HCAR2
+Microglial cell,GAS2L1
+Microglial cell,ANKRD26P3
+Microglial cell,ZBTB8B
+Microglial cell,RPS15A
+Microglial cell,ADAMTS13
+Microglial cell,PTPRZ1
+Microglial cell,CTSA
+Microglial cell,FBRSL1
+Microglial cell,TSHZ3
+Microglial cell,PSTPIP1
+Microglial cell,KCNJ2
+Microglial cell,LDHA
+Microglial cell,KCNMA1
+Microglial cell,INF2
+Microglial cell,ZNF843
+Microglial cell,GLT1D1
+Microglial cell,RPLP0
+Microglial cell,RPS3
+Microglial cell,NDUFA6
+Microglial cell,TM9SF1
+Microglial cell,RPS5
+Microglial cell,CTSL
+Microglial cell,RPS4X
+Microglial cell,SERPINF1
+Microglial cell,ZNF532
+Microglial cell,SLC38A7
+Microglial cell,IGF1
+Microglial cell,SYNGR1
+Microglial cell,PTCHD1
+Microglial cell,IGSF10
+Microglial cell,RPL35A
+Microglial cell,NIN
+Microglial cell,FTH1
+Microglial cell,GPR84
+Microglial cell,FLT1
+Microglial cell,CSF2RA
+Microglial cell,RUNX3
+Microglial cell,CCK
+Microglial cell,CAPG
+Microglial cell,PLD3
+Microglial cell,TENT5C
+Microglial cell,IL15
+Microglial cell,RPSA
+Microglial cell,COX8A
+Microglial cell,CLEC7A
+Microglial cell,RPLP1
+Microglial cell,ADSS1
+Microglial cell,PEBP1
+Microglial cell,MOV10L1
+Microglial cell,CTSD
+Microglial cell,STEAP3
+Microglial cell,TMED3
+Microglial cell,APBB2
+Microglial cell,FAM20C
+Microglial cell,DKK2
+Microglial cell,PERP
+Microglial cell,GAS2L3
+Microglial cell,ANK1
+Microglial cell,USP12
+Microglial cell,ATP6V0D2
+Microglial cell,CSF1
+Microglial cell,RPL38
+Microglial cell,RPL10A
+Microglial cell,RPS3A
+Microglial cell,ZNF662
+Microglial cell,CSTB
+Microglial cell,RPL14
+Microglial cell,CD5
+Microglial cell,RPL3
+Microglial cell,SDF2L1
+Microglial cell,NRP1
+Microglial cell,ARRDC4
+Microglial cell,RPL22
+Microglial cell,FXYD6
+Microglial cell,PRDX1
+Microglial cell,MEIS1
+Microglial cell,RPS2
+Microglial cell,IL18BP
+Microglial cell,VPS13C
+Microglial cell,ACTR3B
+Microglial cell,APLP2
+Microglial cell,ANXA5
+Microglial cell,PLBD2
+Microglial cell,RPL13
+Microglial cell,CRLF2
+Microglial cell,CPD
+Microglial cell,RPL27A
+Microglial cell,LSR
+Microglial cell,AXL
+Microglial cell,VAT1
+Microglial cell,RAMP1
+Microglial cell,RPL35
+Microglial cell,LGI2
+Microglial cell,HPSE
+Microglial cell,RFX2
+Microglial cell,CD63
+Microglial cell,CTSE
+Microglial cell,PLEKHH2
+Microglial cell,GPNMB
+Microglial cell,CD300LB
+Microglial cell,SELENBP1
+Microglial cell,RPL7
+Microglial cell,NPC2
+Microglial cell,PSAT1
+Microglial cell,APOC4
+Microglial cell,RPL12
+Microglial cell,MAFF
+Microglial cell,CADM1
+Microglial cell,FOXP1
+Microglial cell,SCD5
+Microglial cell,DPP7
+Microglial cell,ANXA3
+Microglial cell,MIF
+Microglial cell,LILRB4
+Microglial cell,COX6A1
+Microglial cell,ALDOA
+Microglial cell,VENTX
+Microglial cell,CLDN15
+Microglial cell,ULK3
+Microglial cell,CXCL16
+Microglial cell,NEXN
+Microglial cell,TNFRSF21
+Microglial cell,RIMS2
+Microglial cell,IFI44
+Microglial cell,CD52
+Microglial cell,BAMBI
+Microglial cell,RPL11
+Microglial cell,COX4I1
+Microglial cell,CECR2
+Microglial cell,PLXNC1
+Microglial cell,COX6A2
+Microglial cell,EGLN3
+Microglial cell,RPL5
+Microglial cell,KIF1A
+Microglial cell,RPL6
+Microglial cell,PABPC1
+Microglial cell,FTL
+Microglial cell,SORL1
+Microglial cell,DNAJB4
+Microglial cell,PTTG1
+Microglial cell,HLA-DRB1
+Microglial cell,LHX1
+Microglial cell,XBP1
+Microglial cell,TCF7L2
+Microglial cell,DLX6-AS1
+Microglial cell,TTYH1
+Microglial cell,NEUROD2
+Microglial cell,GTSE1
+Microglial cell,ISL1
+Microglial cell,ASAH1
+Microglial cell,LGALS1
+Microglial cell,MCM5
+Microglial cell,FKBP5
+Microglial cell,PAX6
+Astrocyte,IL17A
+Oligodendrocyte,PCDH15
+Oligodendrocyte,DSCAM
+Oligodendrocyte,SOX6
+Oligodendrocyte,CNTNAP2
+Oligodendrocyte,PDGFRA
+Oligodendrocyte,QKI
+Oligodendrocyte,PCDH9
+Neuron,NCAM2
+Neuron,SHISA9
+Neuron,NRCAM

@@ -1,0 +1,56 @@
+# Git
+.git
+.gitignore
+
+# Docker related
+Dockerfile
+.dockerignore
+
+# Python virtual environment
+.venv
+venv/
+env/
+
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Data files - these should be mounted as volumes or handled separately
+data/
+TL_2025_scRNA-seq_pipeline_python-main/data/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Operating System specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Other specific project files/folders to ignore if any
+# e.g., large datasets, temporary files, specific outputs not needed in the image
+# results/
+# temp_files/
+
+# Credentials & Sensitive files
+*.env
+secrets/
+credentials.json 

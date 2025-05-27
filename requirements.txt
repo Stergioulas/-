@@ -1,0 +1,11 @@
+pandas
+scanpy
+matplotlib
+seaborn
+scanorama
+hdf5plugin
+jupyter
+decoupler
+igraph
+leidenalg
+adjustText
